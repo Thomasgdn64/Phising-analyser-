@@ -357,4 +357,671 @@ Service Informatique Safran</textarea>
           <label for="url-context">Contexte (optionnel)</label>
           <textarea id="url-context" style="min-height:80px;" placeholder="D'où provient ce lien ? Email, SMS, QR code…"></textarea>
         </div>
-      <
+      </div>
+
+      <div class="advanced-toggle" id="adv-toggle-url" onclick="toggleAdvanced('url')">
+        <svg class="icon" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="4" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="7" cy="10" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M1 4h4M9 4h4M1 10h4M9 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Paramètres avancés
+        <svg class="chevron" id="chevron-url" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="advanced-body" id="adv-body-url">
+        <div class="options-note">Modules activés par défaut. Les options API externe requièrent une connexion sortante.</div>
+        <div class="options-grid">
+          <label class="checkbox-row"><input type="checkbox" checked> Réputation domaine</label>
+          <label class="checkbox-row"><input type="checkbox" checked> WHOIS + âge domaine</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Résolution DNS</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Certificat TLS</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Suivi des redirections</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Similitude visuelle</label>
+          <label class="checkbox-row"><input type="checkbox"> VirusTotal (API externe)</label>
+          <label class="checkbox-row"><input type="checkbox"> Screenshot page finale</label>
+          <label class="checkbox-row"><input type="checkbox"> Analyse du code source</label>
+          <label class="checkbox-row"><input type="checkbox"> Détection formulaire login</label>
+        </div>
+      </div>
+
+      <div class="panel-buttons">
+        <button class="btn-primary" onclick="showResults('url')">
+          <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Analyser l'URL
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB: EN-TÊTES -->
+    <div class="tab-content" id="tab-headers">
+      <div class="panel-section">
+        <div class="input-group" style="margin-top:4px;">
+          <label for="headers-input">En-têtes bruts</label>
+          <textarea id="headers-input" style="min-height:240px; font-family:'Consolas','Courier New',monospace; font-size:11px;">Received: from mail.update-secure.com (185.220.101.47)
+  by mx.safran-group.com with ESMTP id x7si123456;
+  Sun, 29 Jun 2026 09:14:33 +0000
+Return-Path: &lt;bounce@update-secure.com&gt;
+Received-SPF: softfail (mx.safran-group.com: domain of
+  it-support@safran-group.update-secure.com does not
+  designate 185.220.101.47 as permitted sender)
+From: "Service Informatique Safran" &lt;it-support@safran-group.update-secure.com&gt;
+To: thomas.gaudin@safran-ed.com
+Reply-To: recovery@update-secure.com
+Subject: =?UTF-8?Q?Action_requise?=
+Date: Sun, 29 Jun 2026 09:14:30 +0000
+Message-ID: &lt;20260629091430.1a2b3c@update-secure.com&gt;
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+X-Mailer: PHPMailer 6.8.0</textarea>
+          <div class="input-hint">Collez les en-têtes complets (format RFC 5322)</div>
+        </div>
+      </div>
+
+      <div class="advanced-toggle" id="adv-toggle-headers" onclick="toggleAdvanced('headers')">
+        <svg class="icon" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="4" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="7" cy="10" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M1 4h4M9 4h4M1 10h4M9 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Paramètres avancés
+        <svg class="chevron" id="chevron-headers" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="advanced-body" id="adv-body-headers">
+        <div class="options-note">Analyse des champs d'authentification et de routage email.</div>
+        <div class="options-grid">
+          <label class="checkbox-row"><input type="checkbox" checked> SPF</label>
+          <label class="checkbox-row"><input type="checkbox" checked> DKIM</label>
+          <label class="checkbox-row"><input type="checkbox" checked> DMARC</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Return-Path</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Chaîne Received</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Géoloc. IP relais</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Reply-To vs From</label>
+          <label class="checkbox-row"><input type="checkbox"> Réputation IP (AbuseIPDB)</label>
+        </div>
+      </div>
+
+      <div class="panel-buttons">
+        <button class="btn-primary" onclick="showResults('headers')">
+          <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Analyser les en-têtes
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /panel-left -->
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right" id="results-panel">
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="27" stroke="#003189" stroke-width="1.5"/>
+        <path d="M18 22h20M18 28h14M18 34h10" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="40" cy="36" r="8" fill="#f4f6f9" stroke="#003189" stroke-width="1.5"/>
+        <path d="M37 36l2 2 4-4" stroke="#003189" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="empty-state-title">Aucune analyse en cours</div>
+      <div class="empty-state-sub">Renseignez les champs dans le panneau gauche et lancez l'analyse.</div>
+    </div>
+
+    <!-- EMAIL RESULTS -->
+    <div id="results-email" class="results-block">
+      <div class="score-card">
+        <div class="score-card-header">
+          <div class="score-card-title">
+            <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2L2 5v5c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z" stroke="#003189" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M8 7v3M8 11.5v.5" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Score de risque — Email
+          </div>
+          <span class="score-card-meta">Analysé le 29/06/2026 à 14:37 · 1,2 s</span>
+        </div>
+        <div class="score-card-body">
+          <div class="risk-summary">
+            <div class="risk-number">73</div>
+            <div class="risk-label-block">
+              <div class="risk-verdict">Risque ÉLEVÉ</div>
+              <div class="risk-desc">Plusieurs indicateurs critiques détectés. Cet email présente des caractéristiques fortement associées à une tentative de phishing ciblé (spear phishing).</div>
+            </div>
+          </div>
+          <div class="bar-label-row"><span>Faible</span><span>Modéré</span><span>Élevé</span><span>Critique</span></div>
+          <div class="segmented-bar">
+            <div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div>
+            <div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div>
+            <div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div>
+            <div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div>
+          </div>
+          <div class="bar-cursor-row"><div class="bar-cursor" style="left:73%"></div></div>
+          <div class="indicators-title">Indicateurs détectés</div>
+          <table class="indicators-table">
+            <thead><tr><th>Indicateur</th><th>Poids</th><th style="text-align:right">Sévérité</th></tr></thead>
+            <tbody>
+              <tr><td><div class="indicator-name">Domaine expéditeur suspect</div><div class="indicator-detail">update-secure.com ≠ safran-group.com</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot on"></div></div></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">URL de redirection externe</div><div class="indicator-detail">safran-rh-portail.update-secure.com</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot on"></div></div></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">Urgence artificielle</div><div class="indicator-detail">"expire dans 24h", "accès révoqué"</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">Domaine enregistré récemment</div><div class="indicator-detail">update-secure.com — 12 jours</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">SPF softfail</div><div class="indicator-detail">~all — IP non autorisée</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Modéré</span></td></tr>
+              <tr><td><div class="indicator-name">DKIM absent</div><div class="indicator-detail">Aucune signature DKIM trouvée</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Modéré</span></td></tr>
+              <tr><td><div class="indicator-name">Usurpation de marque</div><div class="indicator-detail">"Safran" dans corps + domaine tiers</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill high">Élevé</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#003189" stroke-width="1.2"/><path d="M7 4v4M7 9.5v.5" stroke="#003189" stroke-width="1.4" stroke-linecap="round"/></svg>Domaine expéditeur</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">Domaine</span><span class="kv-val bad">update-secure.com</span></div>
+            <div class="kv-row"><span class="kv-key">Registrar</span><span class="kv-val">Namecheap, Inc.</span></div>
+            <div class="kv-row"><span class="kv-key">Création</span><span class="kv-val warn">17/06/2026 (12 j)</span></div>
+            <div class="kv-row"><span class="kv-key">IP hébergeur</span><span class="kv-val">185.220.101.47</span></div>
+            <div class="kv-row"><span class="kv-key">Pays hébergeur</span><span class="kv-val warn">NL (inattendu)</span></div>
+            <div class="kv-row"><span class="kv-key">Réputation IP</span><span class="kv-val bad">Signalée (AbuseIPDB)</span></div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="9" rx="1.5" stroke="#003189" stroke-width="1.2"/><path d="M1 6h12M4 3V1M10 3V1" stroke="#003189" stroke-width="1.2" stroke-linecap="round"/></svg>Authentification</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">SPF</span><span class="kv-val warn">Softfail (~all)</span></div>
+            <div class="kv-row"><span class="kv-key">DKIM</span><span class="kv-val bad">Absent</span></div>
+            <div class="kv-row"><span class="kv-key">DMARC</span><span class="kv-val bad">Absent</span></div>
+            <div class="kv-row"><span class="kv-key">Return-Path</span><span class="kv-val bad">Incohérent</span></div>
+            <div class="kv-row"><span class="kv-key">Reply-To</span><span class="kv-val bad">Domaine différent</span></div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><path d="M7 1L2 4v4c0 2.5 2 4 5 5 3-1 5-2.5 5-5V4L7 1z" stroke="#003189" stroke-width="1.2" stroke-linejoin="round"/></svg>URL détectée</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">URLs externes</span><span class="kv-val bad">1</span></div>
+            <div class="kv-row"><span class="kv-key">TLS valide</span><span class="kv-val warn">Oui (Let's Encrypt)</span></div>
+            <div class="kv-row"><span class="kv-key">Redirections</span><span class="kv-val bad">3 sauts</span></div>
+            <div class="kv-row"><span class="kv-key">Page finale</span><span class="kv-val bad">Clone portail login</span></div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><path d="M2 2h10v10H2zM5 2v10M2 5h10" stroke="#003189" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Analyse linguistique</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">Langue</span><span class="kv-val ok">Français (cohérent)</span></div>
+            <div class="kv-row"><span class="kv-key">Urgence</span><span class="kv-val bad">Forte (×3 termes)</span></div>
+            <div class="kv-row"><span class="kv-key">Menace implicite</span><span class="kv-val bad">Oui</span></div>
+            <div class="kv-row"><span class="kv-key">Demande identifiants</span><span class="kv-val bad">Oui</span></div>
+            <div class="kv-row"><span class="kv-key">Fautes orthographe</span><span class="kv-val ok">Aucune</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="excerpt-card">
+        <div class="excerpt-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><path d="M2 3h10M2 6h10M2 9h6" stroke="#003189" stroke-width="1.2" stroke-linecap="round"/></svg>Extrait annoté</div>
+        <div class="excerpt-body">
+          Cher(e) collaborateur(trice),<br><br>
+          Votre accès au portail RH <span class="highlight-warn">expire dans 24h</span>. Veuillez cliquer sur le lien ci-dessous pour <span class="highlight-warn">renouveler vos identifiants</span> et éviter la suspension de votre compte.<br><br>
+          → <span class="highlight-bad">http://safran-rh-portail.update-secure.com/login?token=a7f93k</span><br><br>
+          En cas de non-action, <span class="highlight-warn">votre accès sera révoqué et votre responsable notifié</span>.<br><br>
+          Cordialement,<br>
+          <span class="highlight-bad">Service Informatique Safran</span> <span style="color:var(--text-secondary); font-size:11px;">(expéditeur non vérifié)</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-secondary" onclick="exportPDF()">Exporter PDF</button>
+        <button class="btn-secondary" onclick="copyReport()">Copier le rapport</button>
+        <button class="btn-secondary btn-danger" style="margin-left:auto;" onclick="markFalsePositive()">Marquer faux positif</button>
+      </div>
+    </div>
+
+    <!-- URL RESULTS -->
+    <div id="results-url" class="results-block">
+      <div class="score-card">
+        <div class="score-card-header">
+          <div class="score-card-title">
+            <svg class="icon-16" viewBox="0 0 16 16" fill="none"><path d="M8 2L2 5v5c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z" stroke="#003189" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 7v3M8 11.5v.5" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Score de risque — URL
+          </div>
+          <span class="score-card-meta">Analysé le 29/06/2026 à 14:39 · 2,1 s</span>
+        </div>
+        <div class="score-card-body">
+          <div class="risk-summary">
+            <div class="risk-number">81</div>
+            <div class="risk-label-block">
+              <div class="risk-verdict">Risque CRITIQUE</div>
+              <div class="risk-desc">Cette URL pointe vers un clone de portail d'authentification hébergé sur un domaine récemment enregistré. Le certificat TLS ne garantit pas la légitimité du site.</div>
+            </div>
+          </div>
+          <div class="bar-label-row"><span>Faible</span><span>Modéré</span><span>Élevé</span><span>Critique</span></div>
+          <div class="segmented-bar">
+            <div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div>
+            <div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div>
+            <div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div>
+            <div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div>
+          </div>
+          <div class="bar-cursor-row"><div class="bar-cursor" style="left:81%"></div></div>
+          <div class="indicators-title">Indicateurs détectés</div>
+          <table class="indicators-table">
+            <thead><tr><th>Indicateur</th><th>Poids</th><th style="text-align:right">Sévérité</th></tr></thead>
+            <tbody>
+              <tr><td><div class="indicator-name">Domaine non légitime</div><div class="indicator-detail">update-secure.com ≠ safran-group.com</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot on"></div></div></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">Page de login clonée détectée</div><div class="indicator-detail">Formulaire POST vers collect.update-secure.com</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot on"></div></div></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">3 redirections successives</div><div class="indicator-detail">→ cdn.update-secure.com → portail → login</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">Token en paramètre GET</div><div class="indicator-detail">?token=a7f93k — suivi de clic potentiel</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Modéré</span></td></tr>
+              <tr><td><div class="indicator-name">IP hébergeur signalée</div><div class="indicator-detail">185.220.101.47 — AbuseIPDB score 94/100</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill high">Élevé</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-card-header">
+          <div class="score-card-title"><svg class="icon-16" viewBox="0 0 16 16" fill="none"><circle cx="6" cy="6" r="4" stroke="#003189" stroke-width="1.3"/><path d="M9 9l4 4" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/></svg>Chaîne de redirections</div>
+        </div>
+        <div class="score-card-body">
+          <table class="url-scan-table">
+            <thead><tr><th>#</th><th>URL</th><th>Code</th><th style="text-align:right">Statut</th></tr></thead>
+            <tbody>
+              <tr><td style="color:var(--text-secondary)">1</td><td>http://safran-rh-portail.update-secure.com/login?token=a7f93k</td><td>301</td><td style="text-align:right"><span class="pill medium">Redirection</span></td></tr>
+              <tr><td style="color:var(--text-secondary)">2</td><td>https://cdn.update-secure.com/rh/init</td><td>302</td><td style="text-align:right"><span class="pill medium">Redirection</span></td></tr>
+              <tr><td style="color:var(--text-secondary)">3</td><td>https://safran-rh-portail.update-secure.com/auth/login</td><td>200</td><td style="text-align:right"><span class="pill high">Page finale</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#003189" stroke-width="1.2"/><path d="M7 4v4M7 9.5v.5" stroke="#003189" stroke-width="1.4" stroke-linecap="round"/></svg>Domaine</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">Domaine</span><span class="kv-val bad">update-secure.com</span></div>
+            <div class="kv-row"><span class="kv-key">Registrar</span><span class="kv-val">Namecheap, Inc.</span></div>
+            <div class="kv-row"><span class="kv-key">Création</span><span class="kv-val warn">17/06/2026 (12 j)</span></div>
+            <div class="kv-row"><span class="kv-key">Expiration</span><span class="kv-val">17/06/2027</span></div>
+            <div class="kv-row"><span class="kv-key">NS</span><span class="kv-val">ns1.namecheap.com</span></div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="2" width="12" height="10" rx="1.5" stroke="#003189" stroke-width="1.2"/><path d="M4 6l2 2 4-3" stroke="#003189" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Certificat TLS</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">Émetteur</span><span class="kv-val warn">Let's Encrypt R10</span></div>
+            <div class="kv-row"><span class="kv-key">Valide depuis</span><span class="kv-val">18/06/2026</span></div>
+            <div class="kv-row"><span class="kv-key">Expire le</span><span class="kv-val">17/09/2026</span></div>
+            <div class="kv-row"><span class="kv-key">CN</span><span class="kv-val">*.update-secure.com</span></div>
+            <div class="kv-row"><span class="kv-key">Évaluation</span><span class="kv-val warn">Valide mais suspect</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-secondary" onclick="exportPDF()">Exporter PDF</button>
+        <button class="btn-secondary" onclick="copyReport()">Copier le rapport</button>
+        <button class="btn-secondary btn-danger" style="margin-left:auto;" onclick="markFalsePositive()">Marquer faux positif</button>
+      </div>
+    </div>
+
+    <!-- HEADERS RESULTS -->
+    <div id="results-headers" class="results-block">
+      <div class="score-card">
+        <div class="score-card-header">
+          <div class="score-card-title">
+            <svg class="icon-16" viewBox="0 0 16 16" fill="none"><path d="M8 2L2 5v5c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z" stroke="#003189" stroke-width="1.3" stroke-linejoin="round"/><path d="M8 7v3M8 11.5v.5" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Score de risque — En-têtes
+          </div>
+          <span class="score-card-meta">Analysé le 29/06/2026 à 14:40 · 0,8 s</span>
+        </div>
+        <div class="score-card-body">
+          <div class="risk-summary">
+            <div class="risk-number">68</div>
+            <div class="risk-label-block">
+              <div class="risk-verdict">Risque ÉLEVÉ</div>
+              <div class="risk-desc">Les en-têtes révèlent une incohérence entre l'adresse d'expédition et le chemin de retour, ainsi qu'une absence d'authentification DKIM et DMARC.</div>
+            </div>
+          </div>
+          <div class="bar-label-row"><span>Faible</span><span>Modéré</span><span>Élevé</span><span>Critique</span></div>
+          <div class="segmented-bar">
+            <div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div>
+            <div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div>
+            <div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div>
+            <div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div>
+          </div>
+          <div class="bar-cursor-row"><div class="bar-cursor" style="left:68%"></div></div>
+          <div class="indicators-title">Résultats d'authentification</div>
+          <table class="indicators-table">
+            <thead><tr><th>Contrôle</th><th>Résultat</th><th style="text-align:right">Sévérité</th></tr></thead>
+            <tbody>
+              <tr><td><div class="indicator-name">SPF</div><div class="indicator-detail">v=spf1 include:_spf.update-secure.com ~all</div></td><td><span class="pill medium">Softfail</span></td><td style="text-align:right"><span class="pill medium">Modéré</span></td></tr>
+              <tr><td><div class="indicator-name">DKIM</div><div class="indicator-detail">Aucun champ DKIM-Signature présent</div></td><td><span class="pill high">Absent</span></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">DMARC</div><div class="indicator-detail">Aucune politique DMARC sur update-secure.com</div></td><td><span class="pill high">Absent</span></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">From vs Return-Path</div><div class="indicator-detail">From: safran-group.update-secure.com / Return-Path: update-secure.com</div></td><td><span class="pill high">Incohérent</span></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">Reply-To</div><div class="indicator-detail">recovery@update-secure.com ≠ expéditeur</div></td><td><span class="pill high">Suspect</span></td><td style="text-align:right"><span class="pill high">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">IP d'envoi</div><div class="indicator-detail">185.220.101.47 — Pays : NL</div></td><td><span class="pill high">Signalée</span></td><td style="text-align:right"><span class="pill high">Élevé</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="score-card">
+        <div class="score-card-header">
+          <div class="score-card-title"><svg class="icon-16" viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h12M2 12h7" stroke="#003189" stroke-width="1.3" stroke-linecap="round"/></svg>En-têtes analysés</div>
+        </div>
+        <div class="score-card-body" style="padding:0;">
+          <table class="headers-table">
+            <thead><tr><th style="padding:12px 10px 7px;">Champ</th><th style="padding:12px 10px 7px;">Valeur</th><th style="text-align:right; padding:12px 10px 7px;">Statut</th></tr></thead>
+            <tbody>
+              <tr><td class="hdr-key">From</td><td class="hdr-val">it-support@safran-group.update-secure.com</td><td style="text-align:right"><span class="pill high">Suspect</span></td></tr>
+              <tr><td class="hdr-key">Return-Path</td><td class="hdr-val">bounce@update-secure.com</td><td style="text-align:right"><span class="pill high">Incohérent</span></td></tr>
+              <tr><td class="hdr-key">Reply-To</td><td class="hdr-val">recovery@update-secure.com</td><td style="text-align:right"><span class="pill high">Suspect</span></td></tr>
+              <tr><td class="hdr-key">Received-SPF</td><td class="hdr-val">softfail (does not designate 185.220.101.47)</td><td style="text-align:right"><span class="pill medium">Softfail</span></td></tr>
+              <tr><td class="hdr-key">X-Mailer</td><td class="hdr-val">PHPMailer 6.8.0</td><td style="text-align:right"><span class="pill info">Info</span></td></tr>
+              <tr><td class="hdr-key">Message-ID</td><td class="hdr-val">20260629091430.1a2b3c@update-secure.com</td><td style="text-align:right"><span class="pill medium">Suspect</span></td></tr>
+              <tr><td class="hdr-key">Received (IP)</td><td class="hdr-val">185.220.101.47 — mail.update-secure.com</td><td style="text-align:right"><span class="pill high">Signalée</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-secondary" onclick="exportPDF()">Exporter PDF</button>
+        <button class="btn-secondary" onclick="copyReport()">Copier le rapport</button>
+        <button class="btn-secondary btn-danger" style="margin-left:auto;" onclick="markFalsePositive()">Marquer faux positif</button>
+      </div>
+    </div>
+
+  </div><!-- /panel-right -->
+
+</main>
+
+<!-- FOOTER -->
+<div class="panel-footer">
+  <div class="footer-status">
+    <div class="status-dot"></div>
+    Moteurs d'analyse opérationnels · Dernière MàJ base signatures : 28/06/2026
+  </div>
+  <span>Safran Electronics &amp; Defense — Usage interne exclusif · v2.4.1</span>
+</div>
+
+<script>
+// ── TAB SWITCHING ──
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function () {
+    const target = this.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + target).classList.add('active');
+    document.getElementById('empty-state').style.display = 'flex';
+    document.querySelectorAll('.results-block').forEach(r => r.classList.remove('visible'));
+  });
+});
+
+// ── SHOW RESULTS ──
+function showResults(type) {
+  document.getElementById('empty-state').style.display = 'none';
+  document.querySelectorAll('.results-block').forEach(r => r.classList.remove('visible'));
+  document.getElementById('results-' + type).classList.add('visible');
+  currentResultType = type;
+  falsePositiveActive = false;
+}
+
+// ── ADVANCED OPTIONS ACCORDION ──
+function toggleAdvanced(tab) {
+  document.getElementById('adv-body-' + tab).classList.toggle('open');
+  document.getElementById('chevron-' + tab).classList.toggle('open');
+}
+
+// ── STATE ──
+let currentResultType = null;
+let falsePositiveActive = false;
+
+// ── EXPORTER PDF ──
+function exportPDF() {
+  window.print();
+}
+
+// ── COPIER LE RAPPORT ──
+function copyReport() {
+  if (!currentResultType) return;
+
+  const reports = {
+    email: `RAPPORT D'ANALYSE PHISHING — Safran Electronics & Defense
+Analyste : Thomas Gaudin · SOC Fougères
+Date : 29/06/2026 à 14:37
+Type : Email
+
+SCORE DE RISQUE : 73/100 — Risque ÉLEVÉ
+
+INDICATEURS DÉTECTÉS
+• Domaine expéditeur suspect (Critique) — update-secure.com ≠ safran-group.com
+• URL de redirection externe (Critique) — safran-rh-portail.update-secure.com
+• Urgence artificielle (Élevé) — "expire dans 24h", "accès révoqué"
+• Domaine enregistré récemment (Élevé) — 12 jours
+• SPF softfail (Modéré)
+• DKIM absent (Modéré)
+• Usurpation de marque (Élevé)
+
+DOMAINE EXPÉDITEUR
+• Domaine : update-secure.com
+• Registrar : Namecheap, Inc.
+• Création : 17/06/2026 (12 jours)
+• IP : 185.220.101.47 — NL — Signalée AbuseIPDB
+
+AUTHENTIFICATION
+• SPF : Softfail (~all)
+• DKIM : Absent
+• DMARC : Absent
+• Return-Path : Incohérent
+• Reply-To : Domaine différent`,
+
+    url: `RAPPORT D'ANALYSE PHISHING — Safran Electronics & Defense
+Analyste : Thomas Gaudin · SOC Fougères
+Date : 29/06/2026 à 14:39
+Type : URL
+
+SCORE DE RISQUE : 81/100 — Risque CRITIQUE
+
+URL ANALYSÉE : http://safran-rh-portail.update-secure.com/login?token=a7f93k
+
+INDICATEURS DÉTECTÉS
+• Domaine non légitime (Critique) — update-secure.com ≠ safran-group.com
+• Page de login clonée (Critique) — Formulaire POST vers collect.update-secure.com
+• 3 redirections successives (Élevé)
+• Token en paramètre GET (Modéré) — suivi de clic potentiel
+• IP hébergeur signalée (Élevé) — AbuseIPDB score 94/100
+
+CHAÎNE DE REDIRECTIONS
+1. http://safran-rh-portail.update-secure.com/login?token=a7f93k → 301
+2. https://cdn.update-secure.com/rh/init → 302
+3. https://safran-rh-portail.update-secure.com/auth/login → 200 (page finale)
+
+CERTIFICAT TLS
+• Émetteur : Let's Encrypt R10
+• CN : *.update-secure.com
+• Évaluation : Valide mais suspect`,
+
+    headers: `RAPPORT D'ANALYSE PHISHING — Safran Electronics & Defense
+Analyste : Thomas Gaudin · SOC Fougères
+Date : 29/06/2026 à 14:40
+Type : En-têtes email
+
+SCORE DE RISQUE : 68/100 — Risque ÉLEVÉ
+
+AUTHENTIFICATION
+• SPF : Softfail — v=spf1 include:_spf.update-secure.com ~all
+• DKIM : Absent
+• DMARC : Absent
+• From vs Return-Path : Incohérent (Critique)
+• Reply-To : recovery@update-secure.com ≠ expéditeur
+• IP d'envoi : 185.220.101.47 — NL — Signalée
+
+EN-TÊTES ANALYSÉS
+• From : it-support@safran-group.update-secure.com — Suspect
+• Return-Path : bounce@update-secure.com — Incohérent
+• Reply-To : recovery@update-secure.com — Suspect
+• X-Mailer : PHPMailer 6.8.0
+• Message-ID : 20260629091430.1a2b3c@update-secure.com — Suspect`
+  };
+
+  const text = reports[currentResultType];
+  if (!text) return;
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Rapport copié dans le presse-papier');
+  }).catch(() => {
+    // Fallback pour les navigateurs sans clipboard API
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Rapport copié dans le presse-papier');
+  });
+}
+
+// ── MARQUER FAUX POSITIF ──
+function markFalsePositive() {
+  if (!currentResultType) return;
+
+  const block = document.getElementById('results-' + currentResultType);
+  if (!block) return;
+
+  falsePositiveActive = !falsePositiveActive;
+
+  const scoreNum = block.querySelector('.risk-number');
+  const verdict = block.querySelector('.risk-verdict');
+  const desc = block.querySelector('.risk-desc');
+  const btn = block.querySelector('.btn-danger');
+  const segments = block.querySelectorAll('.bar-seg');
+  const cursor = block.querySelector('.bar-cursor');
+
+  if (falsePositiveActive) {
+    // Passer en faux positif — tout en vert
+    scoreNum.style.color = 'var(--risk-low)';
+    verdict.style.color = 'var(--risk-low)';
+    verdict.textContent = 'FAUX POSITIF';
+    desc.textContent = 'Cet élément a été marqué comme faux positif par Thomas Gaudin. Aucune action requise.';
+    segments.forEach(s => {
+      s.className = 'bar-seg';
+      s.classList.add('empty');
+    });
+    // Juste 3 segments verts pour symboliser un score bas
+    for (let i = 0; i < 3; i++) segments[i].classList.replace('empty', 'filled-low');
+    if (cursor) { cursor.style.left = '15%'; cursor.style.background = 'var(--risk-low)'; }
+    if (btn) btn.textContent = 'Annuler faux positif';
+    showToast('Marqué comme faux positif');
+  } else {
+    // Restaurer l'état original
+    location.reload();
+  }
+}
+
+// ── IMPORTER .EML ──
+function importEml() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.eml,.msg,.txt';
+  input.onchange = function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (ev) {
+      const content = ev.target.result;
+      parseEml(content, file.name);
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function parseEml(content, filename) {
+  // Extraction basique des champs email
+  const lines = content.split('\n');
+  let subject = '', from = '', body = '', inBody = false;
+
+  for (const line of lines) {
+    if (line.trim() === '' && !inBody && from) { inBody = true; continue; }
+    if (!inBody) {
+      if (line.toLowerCase().startsWith('subject:')) subject = line.slice(8).trim();
+      if (line.toLowerCase().startsWith('from:')) from = line.slice(5).trim();
+    } else {
+      body += line + '\n';
+    }
+  }
+
+  // Pré-remplir les champs
+  if (subject) document.getElementById('email-subject').value = subject;
+  if (from) document.getElementById('email-sender').value = from;
+  if (body.trim()) document.getElementById('email-body').value = body.trim();
+
+  // Activer l'onglet email si pas déjà actif
+  document.querySelector('[data-tab="email"]').click();
+
+  showToast(`Fichier "${filename}" chargé`);
+}
+
+// ── TOAST NOTIFICATION ──
+function showToast(message) {
+  // Supprimer un toast existant
+  const existing = document.getElementById('toast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'toast';
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.2s ease;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2800);
+}
+
+// ── CSS PRINT ──
+// Injecté dynamiquement pour ne pas polluer style.css
+const printStyle = document.createElement('style');
+printStyle.textContent = `
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+    to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  @media print {
+    header, .breadcrumb, .panel-left, .panel-footer,
+    .action-row, .advanced-toggle, .advanced-body { display: none !important; }
+    main { display: block !important; }
+    .panel-right { padding: 0 !important; overflow: visible !important; }
+    .results-block { display: flex !important; }
+    .score-card, .detail-card, .excerpt-card { break-inside: avoid; }
+    body { background: white !important; font-size: 11px; }
+    .risk-number { font-size: 36px !important; }
+  }
+`;
+document.head.appendChild(printStyle);
+
+</script>
+</body>
+</html>
+
+          
