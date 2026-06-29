@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyseur de Phishing — Safran Electronics & Defense</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-mark">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="1" y="1" width="7" height="7" rx="1" fill="#003189"/>
+        <rect x="10" y="1" width="7" height="7" rx="1" fill="#003189"/>
+        <rect x="1" y="10" width="7" height="7" rx="1" fill="#003189"/>
+        <rect x="10" y="10" width="7" height="3" rx="1" fill="#003189"/>
+      </svg>
+    </div>
+    <span class="logo-name">Safran</span>
+    <span class="logo-divider"></span>
+    <span class="logo-product">Détection de phishing</span>
+  </div>
+  <div class="header-right">
+    <span class="header-badge">USAGE INTERNE CONFIDENTIEL</span>
+    <span class="header-user">Thomas Gaudin · SOC Fougères</span>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Sécurité</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="#">Outils d'analyse</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Analyseur de phishing</span>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- LEFT PANEL -->
+  <div class="panel-left">
+    <div class="tab-bar">
+      <div class="tab active" data-tab="email">Email</div>
+      <div class="tab" data-tab="url">URL</div>
+      <div class="tab" data-tab="headers">En-têtes</div>
+    </div>
+
+    <!-- TAB: EMAIL -->
+    <div class="tab-content active" id="tab-email">
+      <div class="panel-section">
+        <div class="input-group" style="margin-top:4px;">
+          <label for="email-subject">Objet</label>
+          <input type="text" id="email-subject" value="⚠️ Action requise : renouvellement de vos accès RH">
+        </div>
+        <div class="input-group">
+          <label for="email-sender">Expéditeur</label>
+          <input type="text" id="email-sender" value="it-support@safran-group.update-secure.com">
+        </div>
+        <div class="input-group">
+          <label for="email-body">Corps du message</label>
+          <textarea id="email-body" style="min-height:160px;">Cher(e) collaborateur(trice),
+
+Votre accès au portail RH expire dans 24h. Veuillez cliquer sur le lien ci-dessous pour renouveler vos identifiants et éviter la suspension de votre compte.
+
+→ http://safran-rh-portail.update-secure.com/login?token=a7f93k
+
+En cas de non-action, votre accès sera révoqué et votre responsable notifié.
+
+Cordialement,
+Service Informatique Safran</textarea>
+          <div class="input-hint">Texte brut ou HTML · ou importez un .eml</div>
+        </div>
+      </div>
+
+      <div class="advanced-toggle" id="adv-toggle-email" onclick="toggleAdvanced('email')">
+        <svg class="icon" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="4" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="7" cy="10" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M1 4h4M9 4h4M1 10h4M9 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Paramètres avancés
+        <svg class="chevron" id="chevron-email" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="advanced-body" id="adv-body-email">
+        <div class="options-note">Toutes les vérifications sont activées par défaut. Désactivez les modules non pertinents pour accélérer l'analyse.</div>
+        <div class="options-grid">
+          <label class="checkbox-row"><input type="checkbox" checked> Extraction URLs</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Réputation domaine</label>
+          <label class="checkbox-row"><input type="checkbox" checked> SPF / DKIM / DMARC</label>
+          <label class="checkbox-row"><input type="checkbox" checked> WHOIS + âge domaine</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Analyse linguistique</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Usurpation de marque</label>
+          <label class="checkbox-row"><input type="checkbox"> Sandbox pièce jointe</label>
+          <label class="checkbox-row"><input type="checkbox"> VirusTotal (API externe)</label>
+          <label class="checkbox-row"><input type="checkbox"> Suivi des redirections</label>
+          <label class="checkbox-row"><input type="checkbox"> Screenshot page finale</label>
+        </div>
+      </div>
+
+      <div class="panel-buttons">
+        <button class="btn-primary" onclick="showResults('email')">
+          <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Lancer l'analyse
+        </button>
+        <button class="btn-secondary">
+          <svg class="icon" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1v6M4 4l3-3 3 3M2 10h10v2H2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Importer un fichier .eml
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB: URL -->
+    <div class="tab-content" id="tab-url">
+      <div class="panel-section">
+        <div class="input-group" style="margin-top:4px;">
+          <label for="url-input">URL suspecte</label>
+          <input type="text" id="url-input" value="http://safran-rh-portail.update-secure.com/login?token=a7f93k" placeholder="https://…">
+          <div class="input-hint">HTTP ou HTTPS, avec ou sans paramètres</div>
+        </div>
+        <div class="input-group">
+          <label for="url-context">Contexte (optionnel)</label>
+          <textarea id="url-context" style="min-height:80px;" placeholder="D'où provient ce lien ? Email, SMS, QR code…"></textarea>
+        </div>
+      </div>
+
+      <div class="advanced-toggle" id="adv-toggle-url" onclick="toggleAdvanced('url')">
+        <svg class="icon" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="4" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="7" cy="10" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M1 4h4M9 4h4M1 10h4M9 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Paramètres avancés
+        <svg class="chevron" id="chevron-url" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="advanced-body" id="adv-body-url">
+        <div class="options-note">Modules activés par défaut. Les options API externe requièrent une connexion sortante.</div>
+        <div class="options-grid">
+          <label class="checkbox-row"><input type="checkbox" checked> Réputation domaine</label>
+          <label class="checkbox-row"><input type="checkbox" checked> WHOIS + âge domaine</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Résolution DNS</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Certificat TLS</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Suivi des redirections</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Similitude visuelle</label>
+          <label class="checkbox-row"><input type="checkbox"> VirusTotal (API externe)</label>
+          <label class="checkbox-row"><input type="checkbox"> Screenshot page finale</label>
+          <label class="checkbox-row"><input type="checkbox"> Analyse du code source</label>
+          <label class="checkbox-row"><input type="checkbox"> Détection formulaire login</label>
+        </div>
+      </div>
+
+      <div class="panel-buttons">
+        <button class="btn-primary" onclick="showResults('url')">
+          <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Analyser l'URL
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB: EN-TÊTES -->
+    <div class="tab-content" id="tab-headers">
+      <div class="panel-section">
+        <div class="input-group" style="margin-top:4px;">
+          <label for="headers-input">En-têtes bruts</label>
+          <textarea id="headers-input" style="min-height:240px; font-family:'Consolas','Courier New',monospace; font-size:11px;">Received: from mail.update-secure.com (185.220.101.47)
+  by mx.safran-group.com with ESMTP id x7si123456;
+  Sun, 29 Jun 2026 09:14:33 +0000
+Return-Path: &lt;bounce@update-secure.com&gt;
+Received-SPF: softfail (mx.safran-group.com: domain of
+  it-support@safran-group.update-secure.com does not
+  designate 185.220.101.47 as permitted sender)
+From: "Service Informatique Safran" &lt;it-support@safran-group.update-secure.com&gt;
+To: thomas.gaudin@safran-ed.com
+Reply-To: recovery@update-secure.com
+Subject: =?UTF-8?Q?Action_requise?=
+Date: Sun, 29 Jun 2026 09:14:30 +0000
+Message-ID: &lt;20260629091430.1a2b3c@update-secure.com&gt;
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+X-Mailer: PHPMailer 6.8.0</textarea>
+          <div class="input-hint">Collez les en-têtes complets (format RFC 5322)</div>
+        </div>
+      </div>
+
+      <div class="advanced-toggle" id="adv-toggle-headers" onclick="toggleAdvanced('headers')">
+        <svg class="icon" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="4" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="7" cy="10" r="1.5" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M1 4h4M9 4h4M1 10h4M9 10h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        Paramètres avancés
+        <svg class="chevron" id="chevron-headers" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="advanced-body" id="adv-body-headers">
+        <div class="options-note">Analyse des champs d'authentification et de routage email.</div>
+        <div class="options-grid">
+          <label class="checkbox-row"><input type="checkbox" checked> SPF</label>
+          <label class="checkbox-row"><input type="checkbox" checked> DKIM</label>
+          <label class="checkbox-row"><input type="checkbox" checked> DMARC</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Return-Path</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Chaîne Received</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Géoloc. IP relais</label>
+          <label class="checkbox-row"><input type="checkbox" checked> Reply-To vs From</label>
+          <label class="checkbox-row"><input type="checkbox"> Réputation IP (AbuseIPDB)</label>
+        </div>
+      </div>
+
+      <div class="panel-buttons">
+        <button class="btn-primary" onclick="showResults('headers')">
+          <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="7" stroke="white" stroke-width="1.5"/>
+            <path d="M5 8l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Analyser les en-têtes
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /panel-left -->
+
+  <!-- RIGHT PANEL -->
+  <div class="panel-right" id="results-panel">
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="empty-state">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+        <circle cx="28" cy="28" r="27" stroke="#003189" stroke-width="1.5"/>
+        <path d="M18 22h20M18 28h14M18 34h10" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="40" cy="36" r="8" fill="#f4f6f9" stroke="#003189" stroke-width="1.5"/>
+        <path d="M37 36l2 2 4-4" stroke="#003189" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="empty-state-title">Aucune analyse en cours</div>
+      <div class="empty-state-sub">Renseignez les champs dans le panneau gauche et lancez l'analyse.</div>
+    </div>
+
+    <!-- EMAIL RESULTS -->
+    <div id="results-email" class="results-block">
+      <div class="score-card">
+        <div class="score-card-header">
+          <div class="score-card-title">
+            <svg class="icon-16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 2L2 5v5c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z" stroke="#003189" stroke-width="1.3" stroke-linejoin="round"/>
+              <path d="M8 7v3M8 11.5v.5" stroke="#003189" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Score de risque — Email
+          </div>
+          <span class="score-card-meta">Analysé le 29/06/2026 à 14:37 · 1,2 s</span>
+        </div>
+        <div class="score-card-body">
+          <div class="risk-summary">
+            <div class="risk-number">73</div>
+            <div class="risk-label-block">
+              <div class="risk-verdict">Risque ÉLEVÉ</div>
+              <div class="risk-desc">Plusieurs indicateurs critiques détectés. Cet email présente des caractéristiques fortement associées à une tentative de phishing ciblé (spear phishing).</div>
+            </div>
+          </div>
+          <div class="bar-label-row"><span>Faible</span><span>Modéré</span><span>Élevé</span><span>Critique</span></div>
+          <div class="segmented-bar">
+            <div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div><div class="bar-seg filled-low"></div>
+            <div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div><div class="bar-seg filled-med"></div>
+            <div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div><div class="bar-seg filled-high"></div>
+            <div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div><div class="bar-seg empty"></div>
+          </div>
+          <div class="bar-cursor-row"><div class="bar-cursor" style="left:73%"></div></div>
+          <div class="indicators-title">Indicateurs détectés</div>
+          <table class="indicators-table">
+            <thead><tr><th>Indicateur</th><th>Poids</th><th style="text-align:right">Sévérité</th></tr></thead>
+            <tbody>
+              <tr><td><div class="indicator-name">Domaine expéditeur suspect</div><div class="indicator-detail">update-secure.com ≠ safran-group.com</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot on"></div></div></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">URL de redirection externe</div><div class="indicator-detail">safran-rh-portail.update-secure.com</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot on"></div></div></td><td style="text-align:right"><span class="pill high">Critique</span></td></tr>
+              <tr><td><div class="indicator-name">Urgence artificielle</div><div class="indicator-detail">"expire dans 24h", "accès révoqué"</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">Domaine enregistré récemment</div><div class="indicator-detail">update-secure.com — 12 jours</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Élevé</span></td></tr>
+              <tr><td><div class="indicator-name">SPF softfail</div><div class="indicator-detail">~all — IP non autorisée</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Modéré</span></td></tr>
+              <tr><td><div class="indicator-name">DKIM absent</div><div class="indicator-detail">Aucune signature DKIM trouvée</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill medium">Modéré</span></td></tr>
+              <tr><td><div class="indicator-name">Usurpation de marque</div><div class="indicator-detail">"Safran" dans corps + domaine tiers</div></td><td><div class="weight-bar"><div class="weight-dot on"></div><div class="weight-dot on"></div><div class="weight-dot"></div></div></td><td style="text-align:right"><span class="pill high">Élevé</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#003189" stroke-width="1.2"/><path d="M7 4v4M7 9.5v.5" stroke="#003189" stroke-width="1.4" stroke-linecap="round"/></svg>Domaine expéditeur</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">Domaine</span><span class="kv-val bad">update-secure.com</span></div>
+            <div class="kv-row"><span class="kv-key">Registrar</span><span class="kv-val">Namecheap, Inc.</span></div>
+            <div class="kv-row"><span class="kv-key">Création</span><span class="kv-val warn">17/06/2026 (12 j)</span></div>
+            <div class="kv-row"><span class="kv-key">IP hébergeur</span><span class="kv-val">185.220.101.47</span></div>
+            <div class="kv-row"><span class="kv-key">Pays hébergeur</span><span class="kv-val warn">NL (inattendu)</span></div>
+            <div class="kv-row"><span class="kv-key">Réputation IP</span><span class="kv-val bad">Signalée (AbuseIPDB)</span></div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="9" rx="1.5" stroke="#003189" stroke-width="1.2"/><path d="M1 6h12M4 3V1M10 3V1" stroke="#003189" stroke-width="1.2" stroke-linecap="round"/></svg>Authentification</div>
+          <div class="detail-card-body">
+            <div class="kv-row"><span class="kv-key">SPF</span><span class="kv-val warn">Softfail (~all)</span></div>
+            <div class="kv-row"><span class="kv-key">DKIM</span><span class="kv-val bad">Absent</span></div>
+            <div class="kv-row"><span class="kv-key">DMARC</span><span class="kv-val bad">Absent</span></div>
+            <div class="kv-row"><span class="kv-key">Return-Path</span><span class="kv-val bad">Incohérent</span></div>
+            <div class="kv-row"><span class="kv-key">Reply-To</span><span class="kv-val bad">Domaine différent</span></div>
+          </div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-card-header"><svg class="icon" viewBox="0 0 14 14" fill="none"><path d="M7 1L2 4v4c0 2.5 2 4 5 5 3-1 5-2.5 5-5V4L7 1z" stroke="#003189" stroke-width=
